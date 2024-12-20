@@ -21,7 +21,7 @@ func (h *handler) Test(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 	}
 
-	time.Sleep(500 * time.Millisecond)
+	time.Sleep(50 * time.Millisecond)
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Add("content-type", "text/plain")
