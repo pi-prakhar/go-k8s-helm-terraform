@@ -24,7 +24,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/go-test:${{ github.ref_name }} .
-          docker tag gcr.io/${{ secrets.GCP_PROJECT }}/go-test:${{ github.ref_name }} gcr.io/${{ secrets.GCP_PROJECT }}/my-app:latest
+          docker tag gcr.io/${{ secrets.GCP_PROJECT }}/go-test:${{ github.ref_name }} gcr.io/${{ secrets.GCP_PROJECT }}/go-test:latest
 
       - name: Push Docker image
         run: |
