@@ -23,5 +23,7 @@ func (h *handler) Test(w http.ResponseWriter, r *http.Request) {
 
 	time.Sleep(500 * time.Millisecond)
 
+	w.WriteHeader(http.StatusOK)
+	w.Header().Add("content-type", "text/plain")
 	json.NewEncoder(w).Encode("Hello World")
 }

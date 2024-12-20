@@ -17,59 +17,59 @@ services:
     networks:
       - testnet
 
-  # k6:
-  #   container_name: go-test-k6
-  #   image: grafana/k6
-  #   volumes:
-  #     - ./k6:/scripts
-  #   deploy:
-  #     resources:
-  #       limits:
-  #         cpus: "2.0"
-  #         memory: "1G"
-  #   entrypoint: ["/bin/sh", "-c", "tail -f /dev/null"]
-  #   networks:
-  #     - testnet
+  k6:
+    container_name: go-test-k6
+    image: grafana/k6
+    volumes:
+      - ./k6:/scripts
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: "1G"
+    entrypoint: ["/bin/sh", "-c", "tail -f /dev/null"]
+    networks:
+      - testnet
 
-  # prometheus:
-  #   container_name: go-test-prometheus
-  #   image: prom/prometheus:latest
-  #   volumes:
-  #     - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-  #   ports:
-  #     - "9090:9090"
-  #   networks:
-  #     - testnet
+  prometheus:
+    container_name: go-test-prometheus
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml
+    ports:
+      - "9090:9090"
+    networks:
+      - testnet
 
-  # grafana:
-  #   container_name: go-test-grafana
-  #   image: grafana/grafana:latest
-  #   ports:
-  #     - "3000:3000"
-  #   networks:
-  #     - testnet
-  #   environment:
-  #     - GF_SECURITY_ADMIN_USER=admin
-  #     - GF_SECURITY_ADMIN_PASSWORD=admin
-  #   depends_on:
-  #     - prometheus
-  #     - influxdb
-  #   volumes:
-  #     - grafana-data:/var/lib/grafana
-  #     - ./grafana/provisioning:/etc/grafana/provisioning
+  grafana:
+    container_name: go-test-grafana
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    networks:
+      - testnet
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
+      - influxdb
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana:/etc/grafana/provisioning
 
-  # influxdb:
-  #   container_name: go-test-influxdb
-  #   image: influxdb:1.8
-  #   ports:
-  #     - "8086:8086"
-  #   environment:
-  #     INFLUXDB_DB: k6
-  #     INFLUXDB_USER: admin
-  #     INFLUXDB_USER_PASSWORD: admin123
-  #     INFLUXDB_ADMIN_ENABLED: "true"
-  #   networks:
-  #     - testnet
+  influxdb:
+    container_name: go-test-influxdb
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    environment:
+      INFLUXDB_DB: k6
+      INFLUXDB_USER: admin
+      INFLUXDB_USER_PASSWORD: admin123
+      INFLUXDB_ADMIN_ENABLED: "true"
+    networks:
+      - testnet
 
 networks:
   testnet:
