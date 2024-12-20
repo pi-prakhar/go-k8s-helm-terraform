@@ -1,0 +1,23 @@
+namespace: go-test
+
+replicaCount: 1
+
+image:
+  repository: gcr.io/poetic-orb-430304-r9/go-test
+  tag: v1.0.0
+  pullPolicy: IfNotPresent
+
+service:
+  type: LoadBalancer
+  port: 8080
+
+secret:
+  name: go-test-secret
+
+resources:
+  limits:
+    cpu: "0.5"
+    memory: "256Mi"
+  requests:
+    cpu: "0.25"
+    memory: "128Mi"

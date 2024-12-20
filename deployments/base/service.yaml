@@ -1,0 +1,14 @@
+# service.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-test-server
+  namespace: go-test
+spec:
+  selector:
+    app: go-test-server
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
