@@ -8,12 +8,16 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 80
   targetPort: 8080
 
 secret:
   name: go-test-secret
+
+ingress:
+  enabled: true
+  host: your-app.example.com
 
 resources:
   limits:
