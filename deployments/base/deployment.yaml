@@ -5,7 +5,7 @@ metadata:
   name: go-test-server
   namespace: go-test
 spec:
-  replicas: 1 # Number of replicas
+  replicas: 1
   selector:
     matchLabels:
       app: go-test-server
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: go-test-server
-          image: gcr.io/poetic-orb-430304-r9/go-test:1.0.0 # Replace with your image (e.g., gcr.io/your-project/go-test-server)
+          image: gcr.io/poetic-orb-430304-r9/go-test:v1.0.0
           ports:
             - containerPort: 8080
           resources:
@@ -27,4 +27,10 @@ spec:
               cpu: "0.25"
               memory: "128Mi"
           imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              valueFrom:
+                secretKeyRef:
+                  name: go-test-secret
+                  key: PORT
       restartPolicy: Always

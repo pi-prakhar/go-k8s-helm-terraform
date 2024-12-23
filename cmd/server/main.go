@@ -20,6 +20,6 @@ func main() {
 		Addr:    getPort(),
 		Handler: router.GetMux(),
 	}
-
+	log.Println("server started on port ", getPort())
 	log.Println(server.ListenAndServe())
 }
