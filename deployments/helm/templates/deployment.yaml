@@ -30,6 +30,6 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.secret.name }}
-                  key: port
+                  key: PORT
           imagePullPolicy: {{ .Values.image.pullPolicy }}
       restartPolicy: Always

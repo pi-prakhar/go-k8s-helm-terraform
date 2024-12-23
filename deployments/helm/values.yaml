@@ -4,20 +4,19 @@ replicaCount: 1
 
 image:
   repository: gcr.io/poetic-orb-430304-r9/go-test
-  tag: v1.0.0
+  tag: v1.0.1
   pullPolicy: IfNotPresent
 
 service:
   type: ClusterIP
   port: 80
-  targetPort: 8080
+  targetPort: 8200
 
 secret:
   name: go-test-secret
 
 ingress:
   enabled: true
-  host: your-app.example.com
 
 resources:
   limits:
