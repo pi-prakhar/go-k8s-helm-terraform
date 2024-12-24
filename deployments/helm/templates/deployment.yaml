@@ -12,6 +12,11 @@ spec:
     metadata:
       labels:
         app: {{ .Release.Name }}-server
+      annotations:
+        sidecar.istio.io/proxyCPU: "100m"
+        sidecar.istio.io/proxyMemory: "128Mi"
+        sidecar.istio.io/proxyCPULimit: "300m"
+        sidecar.istio.io/proxyMemoryLimit: "512Mi"
     spec:
       containers:
         - name: {{ .Release.Name }}-server
@@ -32,4 +37,11 @@ spec:
                   name: {{ .Values.secret.name }}
                   key: PORT
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1337
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
       restartPolicy: Always
