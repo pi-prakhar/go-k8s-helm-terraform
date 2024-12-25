@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"os"
 
-	api "github.com/pi-prakhar/go-k8s-helm-terraform/internal"
+	api "server2/internal"
 )
 
 func getPort() string {
-	port := os.Getenv("PORT")
+	port := os.Getenv("PORT2")
 	return ":" + port
 }
 

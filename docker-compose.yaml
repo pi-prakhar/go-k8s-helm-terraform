@@ -1,13 +1,31 @@
 services:
-  server:
-    container_name: go-test-server
+  server1:
+    container_name: go-test-server1
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ./server1
+      dockerfile: Dockerfile
     environment:
-      - PORT=${PORT}
+      - PORT1=${PORT1}
     ports:
-      - "${PORT}:${PORT}"
+      - "${PORT1}:${PORT1}"
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "256M"
+    restart: always
+    networks:
+      - testnet
+
+  server2:
+    container_name: go-test-server2
+    build:
+      context: ./server2
+      dockerfile: Dockerfile
+    environment:
+      - PORT2=${PORT2}
+    ports:
+      - "${PORT2}:${PORT2}"
     deploy:
       resources:
         limits:

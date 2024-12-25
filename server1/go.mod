@@ -1,4 +1,4 @@
-module github.com/pi-prakhar/go-k8s-helm-terraform
+module server1
 
 go 1.23.1
 

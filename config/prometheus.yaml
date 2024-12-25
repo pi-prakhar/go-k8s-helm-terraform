@@ -2,6 +2,6 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-  - job_name: "server"
+  - job_name: "server1"
     static_configs:
-      - targets: ["server:8080"]
+      - targets: ["server1:8080"]

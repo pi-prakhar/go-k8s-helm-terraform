@@ -25,5 +25,5 @@ func (h *handler) Test(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 	w.Header().Add("content-type", "text/plain")
-	json.NewEncoder(w).Encode("Hello World")
+	json.NewEncoder(w).Encode("Hello World Test2")
 }
