@@ -23,10 +23,10 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/go-test-server1:${{ github.ref_name }} -f server1/Dockerfile
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/go-test-server1:${{ github.ref_name }} -f server1/Dockerfile server1
           docker tag gcr.io/${{ secrets.GCP_PROJECT }}/go-test-server1:${{ github.ref_name }} gcr.io/${{ secrets.GCP_PROJECT }}/go-test-server1:latest
 
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/go-test-server2:${{ github.ref_name }} -f server2/Dockerfile
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/go-test-server2:${{ github.ref_name }} -f server2/Dockerfile server2
           docker tag gcr.io/${{ secrets.GCP_PROJECT }}/go-test-server2:${{ github.ref_name }} gcr.io/${{ secrets.GCP_PROJECT }}/go-test-server2:latest
 
       - name: Push Docker image
