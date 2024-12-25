@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-server1
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-server1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-server1
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-server1
+          image: {{ .Values.image1.repository }}:{{ .Values.image1.tag }}
+          ports:
+            - containerPort: {{ .Values.service.targetPort }}
+          resources:
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+          env:
+            - name: PORT1
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secret.name }}
+                  key: PORT1
+          imagePullPolicy: {{ .Values.image1.pullPolicy }}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1337
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+      restartPolicy: Always

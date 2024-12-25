@@ -2,9 +2,14 @@ namespace: go-test
 
 replicaCount: 1
 
-image:
-  repository: gcr.io/poetic-orb-430304-r9/go-test
-  tag: v1.0.1
+image1:
+  repository: gcr.io/poetic-orb-430304-r9/go-test-server1
+  tag: v1.1.0
+  pullPolicy: IfNotPresent
+
+image2:
+  repository: gcr.io/poetic-orb-430304-r9/go-test-server2
+  tag: v1.1.0
   pullPolicy: IfNotPresent
 
 service:

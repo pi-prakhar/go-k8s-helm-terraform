@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-server
+  name: {{ .Release.Name }}-server2
   namespace: {{ .Values.namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-server
+      app: {{ .Release.Name }}-server2
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-server
+        app: {{ .Release.Name }}-server2
     spec:
       containers:
-        - name: {{ .Release.Name }}-server
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        - name: {{ .Release.Name }}-server2
+          image: {{ .Values.image2.repository }}:{{ .Values.image2.tag }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
           resources:
@@ -26,12 +26,12 @@ spec:
               cpu: {{ .Values.resources.requests.cpu }}
               memory: {{ .Values.resources.requests.memory }}
           env:
-            - name: PORT
+            - name: PORT2
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.secret.name }}
-                  key: PORT
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+                  key: PORT2
+          imagePullPolicy: {{ .Values.image2.pullPolicy }}
           securityContext:
             runAsNonRoot: true
             runAsUser: 1337
