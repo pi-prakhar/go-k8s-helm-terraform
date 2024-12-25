@@ -11,19 +11,19 @@ spec:
     - http:
         paths:
           # Route for server1
-          - path: /server1/test
+          - path: /server1
             pathType: Prefix
             backend:
               service:
                 name: {{ .Release.Name }}-server1
                 port:
-                  number: {{ .Values.service.server1Port }}
+                  number: {{ .Values.service.port }}
 
           # Route for server2
-          - path: /server2/test
+          - path: /server2
             pathType: Prefix
             backend:
               service:
                 name: {{ .Release.Name }}-server2
                 port:
-                  number: {{ .Values.service.server2Port }}
+                  number: {{ .Values.service.port }}

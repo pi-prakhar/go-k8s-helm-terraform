@@ -19,7 +19,7 @@ func NewRouter(handler Handler) *Router {
 }
 
 func (r *Router) initRouter() {
-	r.mux.HandleFunc("/test", r.handler.Test)
+	r.mux.HandleFunc("/server2/test", r.handler.Test)
 }
 
 func (r *Router) GetMux() *http.ServeMux {

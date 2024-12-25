@@ -21,7 +21,7 @@ func NewRouter(handler Handler) *Router {
 }
 
 func (r *Router) initRouter() {
-	r.mux.HandleFunc("/test", r.handler.Test)
+	r.mux.HandleFunc("/server1/test", r.handler.Test)
 	r.mux.Handle("/metrics", promhttp.Handler())
 }
 

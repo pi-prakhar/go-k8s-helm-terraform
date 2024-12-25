@@ -4,12 +4,12 @@ replicaCount: 1
 
 image1:
   repository: gcr.io/poetic-orb-430304-r9/go-test-server1
-  tag: v1.1.1
+  tag: v1.1.2
   pullPolicy: IfNotPresent
 
 image2:
   repository: gcr.io/poetic-orb-430304-r9/go-test-server2
-  tag: v1.1.1
+  tag: v1.1.2
   pullPolicy: IfNotPresent
 
 service:
@@ -25,8 +25,8 @@ ingress:
 
 resources:
   limits:
-    cpu: "500m"
-    memory: "1Gi"
+    cpu: "250m"
+    memory: "256Mi"
   requests:
     cpu: "250m"
-    memory: "512Mi"
+    memory: "128Mi"
