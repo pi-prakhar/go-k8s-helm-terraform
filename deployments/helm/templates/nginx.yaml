@@ -19,3 +19,10 @@ spec:
                 name: {{ .Release.Name }}-server1
                 port:
                   number: {{ .Values.service.port }}
+          - path: /server2(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ .Release.Name }}-server2
+                port:
+                  number: {{ .Values.service.port }}
