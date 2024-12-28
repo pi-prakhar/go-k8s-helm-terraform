@@ -4,26 +4,18 @@ metadata:
   name: {{ .Release.Name }}-ingress
   namespace: {{ .Values.namespace }}
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   ingressClassName: nginx
   rules:
     - http:
         paths:
           # Route for server1
-          - path: /server1
+          - path: /server1(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: {{ .Release.Name }}-server1
-                port:
-                  number: {{ .Values.service.port }}
-
-          # Route for server2
-          - path: /server2
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ .Release.Name }}-server2
                 port:
                   number: {{ .Values.service.port }}
