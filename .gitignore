@@ -1,1 +1,6 @@
 .env
+deployments/terraform/terraform.tfvars
+deployments/terraform/terraform.tfstate.backup
+deployments/terraform/terraform.tfstate
+deployments/terraform/.terraform.lock.hcl
+deployments/terraform/.terraform/
