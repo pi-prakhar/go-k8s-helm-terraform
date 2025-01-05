@@ -13,14 +13,14 @@ spec:
         paths:
           # Route for server1
           - path: /server1(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ .Release.Name }}-server1
                 port:
                   number: {{ .Values.service.port }}
           - path: /server2(/|$)(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: {{ .Release.Name }}-server2
