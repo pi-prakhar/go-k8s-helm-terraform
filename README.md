@@ -145,8 +145,13 @@ To clean up resources after you are done, you can delete the Helm release and th
    ```bash
    helm uninstall go-test -n go-test
    ```
+   
+2. **Delete the ingress**:
+   ```bash
+   helm uninstall ingress-nginx --namespace ingress-nginx
+   ```
 
-2. **Delete the Terraform-managed Infrastructure**:
+3. **Delete the Terraform-managed Infrastructure**:
    Navigate to the `deployments/terraform` directory and run:
    ```bash
    terraform destroy
